@@ -2,10 +2,11 @@ import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `<div align="center"><table bgcolor="red">
+  template: `<div align="center"><table bgcolor="green">
               <tr>
                 <td><p>Nazwa komponentu <b>Parrent</b></p><br>
-                  <app-child [messageRecive]="message"></app-child>
+                  wiadomość: {{message}}
+                  <app-child (messageEvent)="receiveMessage($event)"></app-child>
                 </td>
               </tr>
             </table></div>
@@ -15,5 +16,9 @@ import { Component} from '@angular/core';
 export class AppComponent {
   title = 'SendDataBetweenComponents';
 
-   message = 'Hello world';
+  message: string;
+
+  receiveMessage($event) {
+    this.message = $event;
+  }
 }
